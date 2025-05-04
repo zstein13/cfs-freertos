@@ -23,22 +23,23 @@ RUN apt-get -qy update \
         build-essential \
         pkg-config \
         libusb-1.0-0-dev \
+        gcc-arm-none-eabi \
     && rm -rf /var/lib/apt/lists/* 
 
 RUN apt-get update && apt-get -y install cmake
 
-ENV PICO_SDK_PATH=/opt/cfs/lib/pico-sdk
+# ENV PICO_SDK_PATH=/opt/cfs/lib/pico-sdk
 
-RUN git clone -b master --depth=1 https://github.com/raspberrypi/pico-sdk.git $PICO_SDK_PATH \
-    && cd $PICO_SDK_PATH \
-    && git submodule update --init
+# RUN git clone -b master --depth=1 https://github.com/raspberrypi/pico-sdk.git $PICO_SDK_PATH \
+#    && cd $PICO_SDK_PATH \
+#    && git submodule update --init
 
-RUN git clone https://github.com/raspberrypi/picotool.git /opt/cfs/lib/picotool \
-    && cd /opt/cfs/lib/picotool \
-    && mkdir build && cd build \
-    && cmake .. \
-    && make \
-    && make install
+# RUN git clone https://github.com/raspberrypi/picotool.git /opt/cfs/lib/picotool \
+#    && cd /opt/cfs/lib/picotool \
+#    && mkdir build && cd build \
+#    && cmake .. \
+#    && make \
+#    && make install
 
 # RUN cp udev/99-picotool.rules /etc/udev/rules.d/
 
