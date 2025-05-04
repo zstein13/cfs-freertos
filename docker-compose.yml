@@ -9,14 +9,14 @@ services:
             DOCKER_HOST_PROJECT_DIR: "${PWD}"
             DOCKER_CONTAINER_PROJECT_DIR: "/opt/cfs"
             O: "build-mps2"
-            SIMULATION: "cortex-m3"
+            SIMULATION: "cortex-m0"
             BUILDTYPE: "debug"
             OMIT_DEPRECATED: "true"
             MISSIONCONFIG: "mps2"
             LINKER_SCRIPT: "/opt/cfs/apps/bsp-arm-mps2-an385/scripts/ld/mps2_m3.ld"
         build:
             context: ./dockerfiles
-            dockerfile: ubuntu18
+            dockerfile: ubuntu24
         logging:
             driver: "json-file"
             options:
