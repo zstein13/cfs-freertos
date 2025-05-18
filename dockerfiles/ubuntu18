@@ -27,7 +27,7 @@ RUN echo "docker:x:1000:1000:docker,,,:/home/docker:/bin/bash" | tee -a /etc/pas
 
 RUN mkdir -p /toolchain
 
-RUN wget -qO- https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2019q4/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2 | tar xvj -C /toolchain/
+RUN wget -qO- https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2019q4/gcc-arm-none-eabi-9-2019-q4-major-mac.tar.bz2 | tar xvj -C /toolchain/
 
 ENV PATH="/home/docker/go/bin:${PATH}"
 ENV PATH="/toolchain/gcc-arm-none-eabi-9-2019-q4-major/bin:${PATH}"

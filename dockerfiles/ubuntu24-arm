@@ -1,0 +1,20 @@
+FROM --platform=linux/arm64 ubuntu:24.04
+
+# Install essential packages and ARM toolchain
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    wget \
+    python3 \
+    gcc-arm-none-eabi \
+    && apt-get clean
+
+# Create a non-root user with UID 1000
+RUN useradd -m -u 1000 -s /bin/bash user1000
+
+# Set ownership and permissions
+WORKDIR /opt/cfs
+RUN chown -R user1000:user1000 /opt/cfs
+
+USER user1000

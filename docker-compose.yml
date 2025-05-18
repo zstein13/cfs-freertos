@@ -4,7 +4,8 @@ services:
     mps2:
         container_name: "mps2_cfs"
         restart: on-failure
-        user: "1000:1000"
+        user: "root"
+        platform: linux/arm64
         environment:
             DOCKER_HOST_PROJECT_DIR: "${PWD}"
             DOCKER_CONTAINER_PROJECT_DIR: "/opt/cfs"
@@ -24,3 +25,17 @@ services:
                 max-file: "2"
         volumes:
             - ".:/opt/cfs"
+        # Install ARM toolchain and setup environment before running the build
+        # command: >
+        #     bash -c "
+        #         apt-get update && 
+        #         apt-get install -y gcc-arm-none-eabi && 
+        #         mkdir -p /opt/local/bin &&
+        #         ln -sf /usr/bin/arm-none-eabi-gcc /opt/local/bin/arm-none-eabi-gcc &&
+        #         ln -sf /usr/bin/arm-none-eabi-g++ /opt/local/bin/arm-none-eabi-g++ &&
+        #         cd /opt/cfs &&
+        #         export CC=/usr/bin/arm-none-eabi-gcc &&
+        #         export CXX=/usr/bin/arm-none-eabi-g++ &&
+        #         chown -R 1000:1000 /opt/cfs && 
+        #         su - -c 'cd /opt/cfs && make prep && make' user1000
+        #     "
